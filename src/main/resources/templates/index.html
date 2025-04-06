@@ -1,36 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>FinWise Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinWise Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-<div class="container">
-    <h1>FinWise Dashboard</h1>
-
-    <div class="section">
-        <h2>Create User</h2>
-        <input type="text" id="fullName" placeholder="Full Name">
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="createUser()">Create</button>
+<body>  <nav>
+    <div><strong>FinWise</strong></div>
+    <div>
+      <a href="#dashboard">Dashboard</a>
+      <a href="https://scartfin.ai" target="_blank">SCART</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
     </div>
-
-    <div class="section">
-        <h2>Get All Users</h2>
-        <button onclick="getAllUsers()">Fetch Users</button>
-        <div id="userList"></div>
-    </div>
-
-    <div class="section">
-        <h2>Analyze Investment</h2>
-        <textarea id="investmentInput" placeholder="Paste JSON here..."></textarea>
-        <button onclick="analyzeInvestment()">Analyze</button>
-        <div id="investmentResult"></div>
-    </div>
+  </nav>  <header>
+    <h1>Welcome to FinWise</h1>
+    <p>Your AI-powered financial assistant</p>
+  </header>  <section id="dashboard">
+    <div class="card">
+      <h2>Portfolio Overview</h2>
+      <canvas id="portfolioChart" height="100"></canvas>
+    </div><div class="card">
+  <h2>Stock Performance</h2>
+  <canvas id="stockChart" height="100"></canvas>
 </div>
 
-<script src="/js/script.js"></script>
-</body>
+  </section>  <section id="insights">
+    <div class="card insights-card">
+      <h2>Insights</h2>
+      <ul>
+        <li><strong>AI-Powered Stock Analysis:</strong> Leverage AI to analyze market trends.</li>
+        <li><strong>Portfolio Management:</strong> Track and manage your investments easily.</li>
+        <li><strong>Real-Time Data Insights:</strong> Get the latest market data updates.</li>
+      </ul>
+    </div>
+  </section>  <section id="contact">
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email us at: support@finwise.codecatalyst</p>
+    </div>
+  </section>  <!-- Chatbot -->  <div id="chatbot">
+    <div id="chat-header">FinWise Assistant</div>
+    <div id="chat-body"></div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Ask about a stock..."/>
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <div class="example-stocks">
+      Example stocks:
+      <span onclick="setInput('TATA')">TATA</span>,
+      <span onclick="setInput('AIRTEL')">Airtel</span>,
+      <span onclick="setInput('NVIDIA')">NVIDIA</span>
+    </div>
+  </div>  <!-- Scripts -->  <script>
+    // Portfolio Chart
+    new Chart(document.getElementById("portfolioChart"), {
+      type: "pie",
+      data: {
+        labels: ["Tech", "Energy", "Health", "Finance"],
+        datasets: [{
+          label: "Portfolio",
+          data: [30, 20, 25, 25],
+          backgroundColor: ["#007bff", "#28a745", "#ffc107", "#dc3545"]
+        }]
+      }
+    });
+
+    // Stock Chart
+    new Chart(document.getElementById("stockChart"), {
+      type: "line",
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+          label: "AAPL",
+          data: [150, 160, 155, 170, 175],
+          borderColor: "#007bff",
+          fill: false
+        }]
+      }
+    });
+
+    // Chatbot Function
+    function sendMessage() {
+      const input = document.getElementById("chat-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatBody = document.getElementById("chat-body");
+
+      const userMsg = document.createElement("div");
+      userMsg.textContent = "You: " + message;
+      chatBody.appendChild(userMsg);
+
+      let response = "I'm sorry, I couldn't find info.";
+      const data = {
+        "AAPL": "Apple stock is currently trading at a premium due to strong earnings.",
+        "TATA": "Tata Motors shows a steady upward trend, great for long-term holding.",
+        "GOOG": "Alphabet is maintaining strong growth in AI and Ads division.",
+        "AIRTEL": "Airtel is growing rapidly in the Indian telecom market.",
+        "NVIDIA": "NVIDIA leads in AI chips and graphics cards globally."
+      };
+
+      if (data[message.toUpperCase()]) {
+        response = data[message.toUpperCase()];
+      }
+
+      const botMsg = document.createElement("div");
+      botMsg.textContent = "FinWise Assistant: " + response;
+      chatBody.appendChild(botMsg);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+      input.value = "";
+    }
+
+    function setInput(stock) {
+      document.getElementById("chat-input").value = stock;
+    }
+  </script></body>
 </html>
