@@ -1,39 +1,120 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f6fc;
-    color: #333;
-    margin: 0;
-    padding: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f6f9;
+  color: #333;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    border-radius: 10px;
+nav {
+  background: #343a40;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
 }
 
-.section {
-    margin-bottom: 30px;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
 }
 
-input, textarea, button {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+header {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #007bff;
+  color: white;
 }
 
-button {
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    cursor: pointer;
+section {
+  padding: 2rem 3rem;
 }
 
-button:hover {
-    background-color: #1b5e20;
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+canvas {
+  max-width: 100%;
+}
+
+/* Chatbot Styles */
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 420px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 9999;
+}
+
+#chat-header {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#chat-input-container {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+#chat-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+#chat-input-container button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.example-stocks {
+  background: #f1f1f1;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+}
+
+.example-stocks span {
+  color: #007bff;
+  cursor: pointer;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+/* Insights Card List */
+.insights-card ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.insights-card li {
+  margin-bottom: 0.5rem;
 }
